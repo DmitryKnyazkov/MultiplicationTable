@@ -51,8 +51,12 @@ class FragmentTwo : Fragment() {
             counterAnwers++
             if (binding.answer.getText().toString() == result.toString()) {
                 counterTrueAnwers ++
+                val bundle = Bundle()
+//            val bundle = bundleOf("feedback" to feedback)
 
-                parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeTrue()).commit()
+                bundle.putString("counterAnwers", counterAnwers.toString())
+
+                parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeTrue(), bundle).commit()
 
             }
             else parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeFalse()).commit()
