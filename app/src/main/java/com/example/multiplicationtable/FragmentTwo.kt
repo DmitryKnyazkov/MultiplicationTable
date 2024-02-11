@@ -29,7 +29,7 @@ class FragmentTwo : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.counter.text = counterAnwers.toString()
+//        binding.counter.text = counterAnwers.toString()
 
         if (counterAnwers == 10) {
             parentFragmentManager.beginTransaction().replace(R.id.container, FragmentFourResult()).commit()
@@ -41,7 +41,10 @@ class FragmentTwo : Fragment() {
 
         binding.changeButton.isEnabled = false
 
-
+        val getInfoFrom3 = arguments?.getString("counterAnwers")
+        if (counterAnwers != 0) {
+            binding.counter.text = getInfoFrom3.toString()
+        }
 
         binding.quation.text = "$oneM x $twoM = "
 
@@ -49,17 +52,29 @@ class FragmentTwo : Fragment() {
 
         binding.changeButton.setOnClickListener {
             counterAnwers++
+
+            val bundle = Bundle()
+            bundle.putString("counterAnwers", counterAnwers.toString())
+
+
             if (binding.answer.getText().toString() == result.toString()) {
                 counterTrueAnwers ++
-                val bundle = Bundle()
-//            val bundle = bundleOf("feedback" to feedback)
+                val fragmentT = FragmentThreeTrue()
+                fragmentT.arguments = bundle
 
-                bundle.putString("counterAnwers", counterAnwers.toString())
-
-                parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeTrue(), bundle).commit()
+//                parentFragmentManager.beginTransaction()
+//                    .replace(R.id.container, FragmentThreeTrue():: class.java, bundle).commit()
+                parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeTrue()).commit()
 
             }
-            else parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeFalse()).commit()
+            else {
+                val fragmentF = FragmentThreeFalse()
+                fragmentF.arguments = bundle
+                parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeTrue()).commit()
+//                parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeFalse()::class.java, bundle).commit()
+            }
+
+
 
         }
     }

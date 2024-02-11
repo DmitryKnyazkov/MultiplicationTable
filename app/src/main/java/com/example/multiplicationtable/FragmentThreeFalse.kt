@@ -23,9 +23,16 @@ class FragmentThreeFalse : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val getInfo = 5
+
+        val getInfo = arguments?.getString("counterAnwers")
         binding.fr3.text = getInfo.toString()
 
+//        val bundleTo2 = Bundle()
+//        bundleTo2.putString("counterAnwers", getInfo.toString())
+
+//        val fragment2 = FragmentTwo()
+//        fragment2.arguments = bundleTo2
+//        parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeTrue()).commit()
 
         binding.nextF.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.container, FragmentTwo()).commit()

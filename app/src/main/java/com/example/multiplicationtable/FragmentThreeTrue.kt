@@ -12,6 +12,9 @@ class FragmentThreeTrue : Fragment() {
     private var _binding: FragmentThreeTrueBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,7 +27,7 @@ class FragmentThreeTrue : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val getInfo = 5
+        val getInfo = arguments?.getString("counterAnwers")
         binding.fr3.text = getInfo.toString()
 
         binding.next.setOnClickListener {
