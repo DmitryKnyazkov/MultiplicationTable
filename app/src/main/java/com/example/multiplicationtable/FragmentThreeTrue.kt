@@ -20,18 +20,17 @@ class FragmentThreeTrue : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentThreeTrueBinding.inflate(inflater)
-        // Inflate the layout for this fragment
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val getInfo = arguments?.getString("counterAnwers")
-        binding.fr3.text = getInfo.toString()
 
         binding.next.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.container, FragmentTwo()).commit()
+            parentFragmentManager.popBackStack()
+//            parentFragmentManager.beginTransaction().replace(R.id.container, FragmentTwo()).commit()
         }
     }
 
