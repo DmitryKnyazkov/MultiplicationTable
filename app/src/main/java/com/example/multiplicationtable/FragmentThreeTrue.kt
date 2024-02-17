@@ -12,6 +12,19 @@ class FragmentThreeTrue : Fragment() {
     private var _binding: FragmentThreeTrueBinding? = null
     private val binding get() = _binding!!
 
+    var listAnswerTrueFoto = mutableListOf(
+        R.drawable.at39,
+        R.drawable.at40,
+        R.drawable.at41,
+        R.drawable.at42,
+        R.drawable.at43,
+        R.drawable.at44,
+        R.drawable.at45,
+        R.drawable.at46,
+        R.drawable.at47,
+        R.drawable.at48,
+        )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -27,6 +40,8 @@ class FragmentThreeTrue : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var foto = listAnswerTrueFoto.random()
+        binding.fotoAnwerTrue.setImageResource(foto)
 
         binding.next.setOnClickListener {
             parentFragmentManager.popBackStack()

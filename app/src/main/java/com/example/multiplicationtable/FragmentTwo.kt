@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.text.isDigitsOnly
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
@@ -12,11 +13,25 @@ import com.example.multiplicationtable.databinding.FragmentOneBinding
 import com.example.multiplicationtable.databinding.FragmentTwoBinding
 
 class FragmentTwo : Fragment() {
+
+
     private var _binding: FragmentTwoBinding? = null
     private val binding get() = _binding!!
 
     var counterTrueAnwers = 0
     var counterAnwers = 0
+    var listQuationFoto = mutableListOf(
+        R.drawable.q19,
+        R.drawable.q20,
+        R.drawable.q21,
+        R.drawable.q22,
+        R.drawable.q23,
+        R.drawable.q24,
+        R.drawable.q25,
+        R.drawable.q26,
+        R.drawable.q27,
+        R.drawable.q28,
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,18 +46,32 @@ class FragmentTwo : Fragment() {
 
 
         if (counterAnwers == 10) {
-            parentFragmentManager.beginTransaction().replace(R.id.container, FragmentFourResult()).commit()
+            val counterBundle = bundleOf("couterFor4" to counterTrueAnwers)
+
+            val fragment4 = FragmentFourResult()
+            fragment4.arguments = counterBundle
+
+            parentFragmentManager.beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.container, fragment4).commit()
         }
 
-        val oneM = (1..9).random()
-        val twoM = (1..9).random()
+        val oneM = (2..9).random()
+        val twoM = (2..9).random()
         val result = oneM * twoM
+
+        val strResult = "$oneM x $twoM = $result"
+
 
         binding.changeButton.isEnabled = false
 
-        binding.counter.text = counterAnwers.toString()
+
+        binding.counter.text = "$counterAnwers/10"
 
         binding.quation.text = "$oneM x $twoM = "
+
+        var foto = listQuationFoto.random()
+        binding.denisFoto.setImageResource(foto)
 
         binding.answer.addTextChangedListener { openButton() }
 
@@ -50,14 +79,24 @@ class FragmentTwo : Fragment() {
             counterAnwers++
 
             if (binding.answer.getText().toString() == result.toString()) {
+                binding.answer.setText("")
                 counterTrueAnwers ++
 
-                parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeTrue()).commit()
+                parentFragmentManager.beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.container, FragmentThreeTrue()).commit()
 
             }
             else {
+                binding.answer.setText("")
 
-                parentFragmentManager.beginTransaction().replace(R.id.container, FragmentThreeFalse()).commit()
+                val forBundle = bundleOf("trueResult" to strResult)
+
+                val fragmentThreeFalse = FragmentThreeFalse()
+                fragmentThreeFalse.arguments = forBundle
+                parentFragmentManager.beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.container, fragmentThreeFalse).commit()
             }
 
 
