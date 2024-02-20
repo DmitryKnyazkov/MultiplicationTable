@@ -40,7 +40,7 @@ class FragmentThreeFalse : Fragment() {
         var foto = listAnswerFalseFoto.random()
         binding.fotoAnwerFalse.setImageResource(foto)
 
-        binding.fr3.text = "Правильный ответ $result!!!"
+        binding.fr3.text = "Правильный ответ \n$result!!!"
         binding.nextF.setOnClickListener {
             parentFragmentManager.popBackStack()
 //            parentFragmentManager.beginTransaction().replace(R.id.container, FragmentTwo()).commit()

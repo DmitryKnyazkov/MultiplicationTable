@@ -33,17 +33,17 @@ class FragmentFourResult : Fragment() {
         when (falseAnswer) {
             0 -> binding.message.text = "Денис, ты справился с заданьем!!! \nУ тебя нет неправильных ответов."
             1 -> binding.message.text = "Денис, ты справился с заданьем!!! \nУ тебя только $falseAnswer неправильный ответ."
-            2 -> binding.message.text = "Денис, ты справился с заданьем!!! \nУ тебя только $falseAnswer неправильных ответов."
+            2 -> binding.message.text = "Денис, ты справился с заданьем!!! \nУ тебя только $falseAnswer неправильных ответа."
 
-            3 -> binding.message.text = "Денис, у тебя средний результат. \nУ тебя $falseAnswer неправильных ответов."
-            4 -> binding.message.text = "Денис, у тебя средний результат. \nУ тебя $falseAnswer неправильных ответов."
+            3 -> binding.message.text = "Денис, у тебя средний результат. \nУ тебя $falseAnswer неправильных ответа."
+            4 -> binding.message.text = "Денис, у тебя средний результат. \nУ тебя $falseAnswer неправильных ответа."
             5 -> binding.message.text = "Денис, у тебя средний результат. \nУ тебя $falseAnswer неправильных ответов."
 
             6 -> binding.message.text = "Денис, это провал!!! Тебе нужно больше заниматься. \nУ тебя $falseAnswer неправильных ответов."
             7 -> binding.message.text = "Денис, это провал!!! Тебе нужно больше заниматься. \nУ тебя $falseAnswer неправильных ответов."
             8 -> binding.message.text = "Денис, это провал!!! Тебе нужно больше заниматься. \nУ тебя $falseAnswer неправильных ответов."
             9 -> binding.message.text = "Денис, это провал!!! Тебе нужно больше заниматься. \nУ тебя $falseAnswer неправильных ответов."
-            10 -> binding.message.text = "Денис, это провал!!! Тебе нужно больше заниматься. \nУ тебя $falseAnswer неправильных ответов."
+            10 -> binding.message.text = "Денис, это провал!!! Тебе нужно больше заниматься. \nУ тебя все ответы неправильные."
 
         }
 
